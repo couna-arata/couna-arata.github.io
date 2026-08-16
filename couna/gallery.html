@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="moon" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — couna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="sky"></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div>
+
+<nav class="topbar">
+  <a class="brand" href="index.html">couna<span class="dot">.</span></a>
+  <div class="nav-links">
+    <a href="about.html"   data-t="nav.about">About</a>
+    <a href="works.html"   data-t="nav.works">Works</a>
+    <a href="cast.html"    data-t="nav.cast">Cast</a>
+    <a href="gallery.html" class="current" data-t="nav.gallery">Gallery</a>
+  </div>
+  <div class="nav-tools" data-mount-toggles></div>
+</nav>
+
+<div class="mobilenav">
+  <a href="index.html"   data-t="nav.home">Home</a>
+  <a href="about.html"   data-t="nav.about">About</a>
+  <a href="works.html"   data-t="nav.works">Works</a>
+  <a href="cast.html"    data-t="nav.cast">Cast</a>
+  <a href="gallery.html" class="current" data-t="nav.gallery">Gallery</a>
+</div>
+
+<main class="stack">
+  <header class="pagehead wrap">
+    <div class="kicker mono" data-t="gallery.kicker">gallery</div>
+    <h1 data-th="gallery.title">撮りためた、<br>ひかりのかけら。</h1>
+    <p data-t="gallery.lead">VRChatで撮った写真。クリックで拡大できます。</p>
+  </header>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-t="nav.gallery">Gallery</h2>
+        <span class="meta mono" data-t="gallery.meta">16 photos</span>
+      </div>
+      <div class="photo-grid" id="photo-grid"></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer class="site">
+      <a href="index.html" class="mono" data-t="common.back">← Home</a>
+      <span class="mono" data-t="footer.note">made in the metaverse</span>
+    </footer>
+  </div>
+</main>
+
+<div id="lightbox">
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-nav lb-prev" id="lb-prev">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-nav lb-next" id="lb-next">›</button>
+  <div class="lb-tag mono" id="lb-tag"></div>
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+initGallery([
+  {src:"assets/photos/vrc-01.jpg", tag:"2025-06"},
+  {src:"assets/photos/vrc-02.jpg", tag:"2025-07"},
+  {src:"assets/photos/vrc-03.jpg", tag:"2025-08"},
+  {src:"assets/photos/vrc-04.jpg", tag:"2025-10"},
+  {src:"assets/photos/vrc-05.jpg", tag:"2025-11"},
+  {src:"assets/photos/vrc-06.jpg", tag:"2025-11"},
+  {src:"assets/photos/vrc-07.jpg", tag:"2025-12"},
+  {src:"assets/photos/vrc-08.jpg", tag:"2025-12"},
+  {src:"assets/photos/vrc-09.jpg", tag:"2026-02"},
+  {src:"assets/photos/vrc-10.jpg", tag:"2026-02"},
+  {src:"assets/photos/vrc-11.jpg", tag:"2026-03"},
+  {src:"assets/photos/vrc-12.jpg", tag:"2026-03"},
+  {src:"assets/photos/vrc-13.jpg", tag:"2026-04"},
+  {src:"assets/photos/vrc-14.jpg", tag:"2026-05"},
+  {src:"assets/photos/vrc-15.jpg", tag:"2026-06"},
+  {src:"assets/photos/vrc-16.jpg", tag:"2026-07"}
+]);
+</script>
+</body>
+</html>

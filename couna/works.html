@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="moon" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Works — couna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="sky"></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div>
+
+<nav class="topbar">
+  <a class="brand" href="index.html">couna<span class="dot">.</span></a>
+  <div class="nav-links">
+    <a href="about.html"   data-t="nav.about">About</a>
+    <a href="works.html" class="current" data-t="nav.works">Works</a>
+    <a href="cast.html"    data-t="nav.cast">Cast</a>
+    <a href="gallery.html" data-t="nav.gallery">Gallery</a>
+  </div>
+  <div class="nav-tools" data-mount-toggles></div>
+</nav>
+
+<div class="mobilenav">
+  <a href="index.html"   data-t="nav.home">Home</a>
+  <a href="about.html"   data-t="nav.about">About</a>
+  <a href="works.html"   class="current" data-t="nav.works">Works</a>
+  <a href="cast.html"    data-t="nav.cast">Cast</a>
+  <a href="gallery.html" data-t="nav.gallery">Gallery</a>
+</div>
+
+<main class="stack">
+  <header class="pagehead wrap">
+    <div class="kicker mono" data-t="works.kicker">works</div>
+    <h1 data-th="works.title">つくったもの。</h1>
+    <p data-t="works.lead">ワールド・アバター・衣装など。すべてプレースホルダーです。</p>
+  </header>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-t="nav.works">Works</h2>
+        <span class="meta mono" data-t="works.meta">06 items — placeholder</span>
+      </div>
+
+      <div class="portal-grid reveal" style="grid-template-columns:repeat(2,1fr);">
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-12.jpg" alt="">
+          <div class="role mono" data-t="works.1.role">World</div>
+          <div class="name" data-t="works.1.name">ワールド名（仮）</div>
+          <div class="note" data-t="works.1.note">説明文をここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-05.jpg" alt="">
+          <div class="role mono" data-t="works.2.role">Avatar</div>
+          <div class="name" data-t="works.2.name">アバター名（仮）</div>
+          <div class="note" data-t="works.2.note">説明文をここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-03.jpg" alt="">
+          <div class="role mono" data-t="works.3.role">Outfit</div>
+          <div class="name" data-t="works.3.name">衣装名（仮）</div>
+          <div class="note" data-t="works.3.note">説明文をここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-11.jpg" alt="">
+          <div class="role mono" data-t="works.4.role">Gimmick</div>
+          <div class="name" data-t="works.4.name">ギミック名（仮）</div>
+          <div class="note" data-t="works.4.note">説明文をここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-15.jpg" alt="">
+          <div class="role mono" data-t="works.5.role">Event</div>
+          <div class="name" data-t="works.5.name">イベント名（仮）</div>
+          <div class="note" data-t="works.5.note">説明文をここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-07.jpg" alt="">
+          <div class="role mono" data-t="works.6.role">Other</div>
+          <div class="name" data-t="works.6.name">その他（仮）</div>
+          <div class="note" data-t="works.6.note">説明文をここに。</div>
+        </div>
+      </div>
+      <span class="ph-note" data-t="common.ph">※ プレースホルダー</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="linkbox reveal" style="display:flex;justify-content:space-between;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+        <div>
+          <div class="mono" style="font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);">BOOTH</div>
+          <div style="font-size:1.15rem;margin-top:.3rem;">c-farm.booth.pm</div>
+        </div>
+        <a href="https://c-farm.booth.pm/" target="_blank" rel="noopener noreferrer"
+           style="border:1px solid var(--line-strong);border-radius:999px;padding:.7rem 1.3rem;font-size:.82rem;"
+           data-t="works.booth">BOOTHで見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer class="site">
+      <a href="index.html" class="mono" data-t="common.back">← Home</a>
+      <span class="mono" data-t="footer.note">made in the metaverse</span>
+    </footer>
+  </div>
+</main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

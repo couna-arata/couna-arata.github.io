@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小谷新太 / Arata Kotani</title>
+<meta name="description" content="XR・HCI Engineer / ML Researcher。東京大学 工学部 精密工学科。デバイス製作からロボット制御、DL/MLモデルの実装まで。">
+<meta property="og:title" content="小谷新太 / Arata Kotani">
+<meta property="og:description" content="XR・HCI Engineer / ML Researcher。ハードとソフトを区切らずに、ナーブギアの実現を目指して。">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--bg-2:#f7f7f5;--line:#e6e6e2;--line-2:#d2d2cc;
+  --ink:#141414;--ink-2:#5d5d5a;--ink-3:#8c8c88;
+  --sans:"Inter","Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;
+  --maxw:1140px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.8;font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;
+  padding:10px 18px;font-size:13.5px;text-decoration:none}
+.skip:focus{left:12px;top:12px}
+
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);
+  backdrop-filter:blur(12px) saturate(1.4);border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+header.site.stuck{border-bottom-color:var(--line);box-shadow:0 1px 20px -12px rgba(0,0,0,.25)}
+.site-in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
+.brand{font-weight:600;letter-spacing:.02em;text-decoration:none;font-size:15px;white-space:nowrap}
+.brand span{color:var(--ink-3);font-weight:400;margin-left:7px}
+@media(max-width:520px){.brand span{display:none}}
+nav.main{display:flex;gap:clamp(14px,2.6vw,30px);font-size:13.5px}
+nav.main a{text-decoration:none;color:var(--ink-2);position:relative;padding:4px 0;
+  transition:color .2s var(--ease);white-space:nowrap}
+nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:var(--ink);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease)}
+nav.main a:hover{color:var(--ink)}
+nav.main a:hover::after,nav.main a[aria-current="true"]::after{transform:scaleX(1)}
+nav.main a[aria-current="true"]{color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(48px,7vw,92px) 0 clamp(40px,6vw,64px);border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:180px 1fr;gap:clamp(28px,5vw,56px);align-items:start}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr;gap:28px}}
+.photo{width:180px;height:180px;background:var(--bg-2);border:1px solid var(--line);
+  border-radius:2px;overflow:hidden;position:relative}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:4px;color:var(--ink-3);font-size:11px;letter-spacing:.06em;
+  background-image:repeating-linear-gradient(45deg,transparent 0 7px,rgba(0,0,0,.025) 7px 14px)}
+@media(max-width:760px){.photo{width:132px;height:132px}}
+h1{margin:0;font-size:clamp(30px,5.2vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.25}
+h1 .en{font-weight:500;color:var(--ink-2);font-size:.55em;margin-left:.55em;letter-spacing:.005em}
+@media(max-width:520px){h1 .en{display:block;margin:6px 0 0}}
+
+/* role line — larger, but deliberately not bold */
+.roles{margin-top:13px;font-size:16.5px;font-weight:400;letter-spacing:.01em;color:var(--ink-2);
+  display:flex;flex-wrap:wrap;align-items:center;gap:0 13px}
+.roles .sep{color:var(--line-2)}
+
+/* affiliations — ruled list, no box; flush left with the name above */
+.affils{list-style:none;margin:20px 0 0;padding:0;max-width:36em;
+  border-top:1px solid var(--line)}
+.affil-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px 13px;
+  padding:11px 2px;border-bottom:1px solid var(--line);
+  text-decoration:none;color:inherit;transition:background .2s var(--ease)}
+a.affil-row:hover{background:var(--bg-2);
+  box-shadow:0 0 0 8px var(--bg-2)}   /* bleed the hover past the flush edge */
+.affil-logo{width:28px;height:28px;object-fit:contain;flex-shrink:0}
+.affil-main{flex:1 1 150px;min-width:0}
+.affil-name{font-size:14px;font-weight:600;line-height:1.5;
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:0 .4em}
+.affil-name .sub{font-weight:400;color:var(--ink-2);font-size:12.5px}
+.affil-name .ext{font-size:11px;color:var(--ink-3);
+  transition:transform .22s var(--ease),color .22s var(--ease)}
+a.affil-row:hover .affil-name .ext{transform:translate(2px,-2px);color:var(--ink)}
+.affil-role{font-size:12.5px;color:var(--ink-2);margin-top:1px}
+.affil-term{font-size:12px;color:var(--ink-3);flex-shrink:0;
+  font-variant-numeric:tabular-nums;letter-spacing:.02em}
+/* 主軸：大学の行ははっきり一段上。地色ではなく、下の罫線を一段濃くして区切る */
+.affil-row.primary{padding:16px 2px;gap:6px 15px;border-bottom-color:var(--line-2)}
+.affil-row.primary .affil-name{font-size:19.5px;font-weight:700;letter-spacing:-.015em;line-height:1.4}
+.affil-row.primary .affil-role{font-size:13.5px;margin-top:3px}
+.affil-row.primary .affil-logo{width:40px;height:40px}
+@media(max-width:520px){
+  .affil-row.primary .affil-name{font-size:17px}
+}
+
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:.5em;text-decoration:none;font-size:13.5px;
+  padding:9px 18px;border:1px solid var(--ink);border-radius:2px;
+  transition:background .2s var(--ease),color .2s var(--ease),transform .2s var(--ease)}
+.btn.solid{background:var(--ink);color:#fff}
+.btn:not(.solid):hover{background:var(--ink);color:#fff}
+.btn.solid:hover{opacity:.85}
+.btn:hover{transform:translateY(-1px)}
+.btn .ar{transition:transform .25s var(--ease)}
+.btn:hover .ar{transform:translateX(3px)}
+
+/* ---------- sections ---------- */
+section{padding:clamp(52px,7vw,88px) 0;border-bottom:1px solid var(--line)}
+.sec-head{margin-bottom:clamp(24px,3.5vw,38px)}
+.sec-label{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:"";flex:1;height:1px;background:var(--line);max-width:120px}
+h2{margin:0;font-size:clamp(21px,3vw,27px);font-weight:700;letter-spacing:-.015em}
+h2 .en{display:block;font-size:13.5px;font-weight:400;color:var(--ink-3);letter-spacing:.02em;margin-top:3px}
+
+.about{max-width:42em}
+.about p{margin:0 0 18px;color:var(--ink-2)}
+.about p:last-child{margin-bottom:0}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,26px)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:2px;background:#fff;display:flex;
+  flex-direction:column;overflow:hidden;text-decoration:none;color:inherit;
+  transition:border-color .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease)}
+.card:hover{border-color:var(--line-2);transform:translateY(-3px);
+  box-shadow:0 12px 30px -18px rgba(0,0,0,.3)}
+a.card:hover{border-color:var(--ink)}
+.thumb{aspect-ratio:16/10;background:var(--bg-2);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:11px;
+  letter-spacing:.08em;position:relative;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;
+  transition:transform .5s var(--ease)}
+a.card:hover .thumb img{transform:scale(1.035)}
+/* keep whole-frame artwork (diagrams, logos) uncropped */
+.thumb.fit{background:#fff}
+.thumb.fit img{object-fit:contain}
+.thumb.logo{background:#fff}
+.thumb.logo img{object-fit:contain;padding:13%}
+a.card:hover .thumb.logo img{transform:scale(1.06)}
+.thumb .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background-image:repeating-linear-gradient(45deg,transparent 0 8px,rgba(0,0,0,.022) 8px 16px)}
+.thumb .ph .n{font-size:26px;font-weight:600;color:var(--line-2);letter-spacing:0}
+.card-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.card-meta{display:flex;justify-content:space-between;gap:10px;font-size:11.5px;
+  color:var(--ink-3);letter-spacing:.04em}
+.card-cat{color:var(--ink-2)}
+.card h3{margin:9px 0 0;font-size:16px;font-weight:600;line-height:1.5;letter-spacing:-.005em;
+  display:flex;align-items:baseline;gap:.4em}
+.card h3 .ext{font-size:12px;color:var(--ink-3);flex-shrink:0;
+  transition:transform .22s var(--ease),color .22s var(--ease)}
+a.card:hover h3 .ext{transform:translate(2px,-2px);color:var(--ink)}
+.card .role{margin:5px 0 0;font-size:13.5px;color:var(--ink-2)}
+.card .desc{margin:9px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.stack{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:14px}
+.stack span{font-size:11px;color:var(--ink-3);background:var(--bg-2);border-radius:2px;padding:2px 7px}
+
+/* ---------- CV timeline (line + dots) ---------- */
+.cv-group{margin:0;font-size:clamp(17px,2.3vw,20px);font-weight:700;letter-spacing:-.015em;
+  color:var(--ink);line-height:1.4;padding:44px 0 18px;
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px}
+.cv-group .en{font-size:12.5px;font-weight:400;color:var(--ink-3);letter-spacing:.04em}
+.cv-group:first-of-type{padding-top:4px}
+
+/* legend */
+.tl-legend{display:flex;flex-wrap:wrap;gap:18px;margin:-4px 0 20px;font-size:12px;color:var(--ink-3)}
+.tl-legend i{display:inline-block;width:11px;height:11px;border-radius:50%;
+  vertical-align:-1px;margin-right:6px;background:var(--bg);border:1.5px solid var(--line-2)}
+.tl-legend .ax i{width:13px;height:13px;background:var(--ink);border:2px solid var(--ink);vertical-align:-2px}
+
+/* the spine = 大学 */
+.tl{position:relative;margin:0;padding:2px 0 0 38px;list-style:none}
+.tl::before{content:"";position:absolute;left:6px;top:10px;bottom:10px;width:1.5px;
+  background:linear-gradient(180deg,var(--line-2),var(--line-2) 12%,var(--line-2) 88%,transparent)}
+.tl-item{position:relative;padding:0 0 24px}
+.tl-item:last-child{padding-bottom:0}
+.node{position:absolute;left:-31.25px;transform:translateX(-50%);top:9px;
+  width:11px;height:11px;border-radius:50%;background:var(--bg);
+  border:1.5px solid var(--line-2);
+  transition:border-color .2s var(--ease),background .2s var(--ease),box-shadow .2s var(--ease)}
+.tl-item:hover .node{border-color:var(--ink)}
+.tl-item.now .node{box-shadow:0 0 0 4px rgba(20,20,20,.09)}
+
+/* 主軸：大学 — sits on the line, heavier */
+.tl-item.axis .node{width:13px;height:13px;background:var(--ink);border:2px solid var(--ink)}
+.tl-item.axis h3{font-size:16.5px;font-weight:700;letter-spacing:-.01em}
+
+/* 枝：課外・所属 — offset to the side, tied back with a hairline */
+.tl-item.branch{margin-left:28px}
+.tl-item.branch .node{left:-33.25px;width:9px;height:9px}
+.tl-item.branch .node::after{content:"";position:absolute;right:100%;top:50%;
+  width:22px;height:1px;background:var(--line-2)}
+.tl-item.branch h3{font-size:14.5px;font-weight:600}
+.tl-item.branch .tl-date{font-size:12px}
+/* narrower text indent on small screens; the node stays put, so the
+   connector keeps its width and still meets the spine */
+@media(max-width:560px){
+  .tl-item.branch{margin-left:16px}
+  .tl-item.branch .node{left:-21.25px}
+}
+
+.tl-date{font-size:12.5px;color:var(--ink-3);letter-spacing:.03em;font-variant-numeric:tabular-nums}
+.tl-item h3{margin:2px 0 0;font-size:15.5px;font-weight:600;line-height:1.6}
+.tl-item h3 .sub{font-weight:400;color:var(--ink-2)}
+.tl-item p{margin:4px 0 0;font-size:13.5px;color:var(--ink-2);max-width:52em}
+.tl-item .why{margin-top:5px;font-size:12.5px;color:var(--ink-3);padding-left:11px;
+  border-left:1px solid var(--line-2)}
+
+/* publications */
+.pub{position:relative;padding:0 0 24px}
+.pub:last-child{padding-bottom:0}
+.pub h3{margin:0;font-size:15.5px;font-weight:600;line-height:1.55}
+.pub h3 a{text-decoration:none;border-bottom:1px solid var(--line-2);
+  transition:border-color .2s var(--ease)}
+.pub h3 a:hover{border-color:var(--ink)}
+.pub h3 .ext{font-size:12px;color:var(--ink-3);margin-left:.35em}
+.pub .authors{margin:5px 0 0;font-size:13.5px;color:var(--ink-2)}
+.pub .authors .me{font-weight:600;color:var(--ink)}
+.pub .venue{margin:3px 0 0;font-size:12.5px;color:var(--ink-3)}
+
+/* ---------- contact ---------- */
+.contact-list{max-width:46em;border-top:1px solid var(--line)}
+.contact-row{display:flex;align-items:baseline;gap:8px 20px;flex-wrap:wrap;
+  padding:16px 2px;border-bottom:1px solid var(--line);text-decoration:none;
+  transition:background .2s var(--ease)}
+.contact-row:hover{background:var(--bg-2)}
+.contact-row .k{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);min-width:132px;flex-shrink:0}
+.contact-row .v{font-size:15.5px;color:var(--ink);word-break:break-all;
+  display:inline-flex;align-items:baseline;gap:.45em}
+.contact-row .v .ext{font-size:12px;color:var(--ink-3);
+  transition:transform .22s var(--ease),color .22s var(--ease)}
+.contact-row:hover .v .ext{transform:translate(2px,-2px);color:var(--ink)}
+.contact-row:hover .v{text-decoration:underline;text-underline-offset:4px;
+  text-decoration-color:var(--line-2)}
+
+footer.site{padding:28px 0 44px;font-size:12.5px;color:var(--ink-3);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+.todo{background:#fff6d8;border-bottom:1px dashed #d8b436;padding:0 3px;cursor:help}
+
+.rv{opacity:0;transform:translateY(14px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+@media print{
+  header.site,.actions,.skip,footer.site{display:none!important}
+  body{font-size:11pt;line-height:1.6}
+  section{padding:14pt 0;border-bottom:1px solid #ccc;break-inside:avoid}
+  .card{break-inside:avoid;border:1px solid #ccc}
+  .thumb{display:none}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .rv{opacity:1!important;transform:none!important}
+  .tl-item{break-inside:avoid}
+  a{text-decoration:none}
+  .todo{background:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="site"><div class="wrap site-in">
+  <a class="brand" href="#top">小谷新太<span>/ Arata Kotani</span></a>
+  <nav class="main" aria-label="メイン">
+    <a href="#about">About</a>
+    <a href="#works">Works</a>
+    <a href="#cv">経歴</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div></header>
+
+<main id="main">
+<div id="top"></div>
+
+<div class="hero"><div class="wrap hero-grid">
+  <div class="photo"><img src="images/profile.jpg" alt="小谷新太" width="360" height="360"></div>
+
+  <div>
+    <h1>小谷 新太<span class="en">Arata Kotani</span></h1>
+
+    <div class="roles">
+      <span>XR・HCI Engineer</span><span class="sep">/</span><span>ML Researcher</span>
+    </div>
+
+    <ul class="affils">
+      <li>
+        <div class="affil-row primary">
+          <img class="affil-logo" src="images/org-utokyo.png" alt="" width="120" height="120">
+          <div class="affil-main">
+            <div class="affil-name">東京大学 工学部 精密工学科</div>
+            <div class="affil-role">学部3年</div>
+          </div>
+          <div class="affil-term">2023 –</div>
+        </div>
+      </li>
+      <li>
+        <a class="affil-row" href="https://commissure.co.jp/" target="_blank" rel="noopener">
+          <img class="affil-logo" src="images/org-commissure.png" alt="" width="120" height="120">
+          <div class="affil-main">
+            <div class="affil-name">commissure Inc.<span class="ext">↗</span></div>
+            <div class="affil-role">インターン</div>
+          </div>
+          <div class="affil-term">2024 – 2026</div>
+        </a>
+      </li>
+      <li>
+        <a class="affil-row" href="https://www.eva.ai.u-tokyo.ac.jp/" target="_blank" rel="noopener">
+          <img class="affil-logo" src="images/org-evarl.png" alt="" width="120" height="120">
+          <div class="affil-main">
+            <div class="affil-name">evarl lab<span class="sub">（河原塚研究室）</span><span class="ext">↗</span></div>
+            <div class="affil-role">RA</div>
+          </div>
+          <div class="affil-term">2026 –</div>
+        </a>
+      </li>
+    </ul>
+
+    <div class="actions">
+      <a class="btn solid" href="#about">About <span class="ar">→</span></a>
+      <a class="btn" href="#works">Works</a>
+      <a class="btn" href="#cv">経歴</a>
+    </div>
+  </div>
+</div></div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about"><div class="wrap">
+  <div class="sec-head rv">
+    <div class="sec-label">01 — About</div>
+    <h2>About<span class="en">自己紹介</span></h2>
+  </div>
+  <div class="about rv">
+    <p>ハードの制作からロボットの制御、DL/MLモデルの実装まで、幅広い技術を授業で学ぶ。課内では制御・信号処理や電子回路を専攻し、課外活動で機械学習やシステム設計を学ぶ。</p>
+    <p>VRサークル所属中に漠然とした仮想現実実現の夢が具体的になり、それ以来、数十年後のナーブギアの実現を一貫して志している。侵襲型デバイスや、自由エネルギー原理、統合情報理論（IIT）といった分野に関心を持っている。</p>
+    <p>垣根なく学ぶことがナーブギア実現の助けになると考えるとともに、自分の主軸として脳神経科学を中心としたウェットな分野を学んでいきたい。</p>
+  </div>
+</div></section>
+
+<!-- ============ WORKS ============ -->
+<section id="works"><div class="wrap">
+  <div class="sec-head rv">
+    <div class="sec-label">02 — Works</div>
+    <h2>Works<span class="en">制作・研究</span></h2>
+  </div>
+
+  <div class="grid">
+
+    <a class="card rv" href="https://prtimes.jp/main/html/rd/p/000000013.000118478.html" target="_blank" rel="noopener">
+      <div class="thumb"><img src="images/work-01-sdk.jpg" alt="ハプティクスデバイスを装着した手" loading="lazy" width="900" height="600"></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-cat">Haptics · SDK</span><span>commissure Inc.</span></div>
+        <h3>ハプティクスデバイス SDK<span class="ext">↗</span></h3>
+        <p class="role">設計・実装</p>
+        <p class="desc">ハプティクスデバイス向けSDKの開発。システム構成とデバイス制御の設計・実装を担当。</p>
+        <div class="stack"><span>Unity</span><span>C#</span><span>Device Control</span></div>
+      </div>
+    </a>
+
+    <a class="card rv" href="https://prtimes.jp/main/html/rd/p/000000007.000118478.html" target="_blank" rel="noopener">
+      <div class="thumb"><img src="images/work-02-ces.jpg" alt="CESのFEEL TECHブースにて展示メンバーと" loading="lazy" width="900" height="600"></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-cat">XR Content</span><span>commissure Inc.</span></div>
+        <h3>CES・万博向け XRコンテンツ<span class="ext">↗</span></h3>
+        <p class="role">制作・現地運用</p>
+        <p class="desc">展示向けXRコンテンツの制作を担当し、現地での運用にも帯同。</p>
+        <div class="stack"><span>Unity</span><span>XR</span><span>Exhibition</span></div>
+      </div>
+    </a>
+
+    <a class="card rv" href="https://dl.acm.org/doi/10.1007/978-3-032-32230-2_12" target="_blank" rel="noopener">
+      <div class="thumb"><img src="images/work-03-ahd.jpg" alt="EuroHapticsでのAudioHapticDiffusion発表の様子" loading="lazy" width="900" height="506"></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-cat">Research · Haptics</span><span>EuroHaptics 2026</span></div>
+        <h3>AudioHapticDiffusion<span class="ext">↗</span></h3>
+        <p class="role">Synchronized Audio-Haptic Generation via Shared Latent Space</p>
+        <p class="desc">音響と振動触覚を共有潜在空間で扱うdual-branch latent diffusion。音と時間的に噛み合った触覚波形を生成する。</p>
+        <div class="stack"><span>PyTorch</span><span>Diffusion</span><span>DPO</span><span>Audio-Haptic</span></div>
+      </div>
+    </a>
+
+    <a class="card rv" href="http://conference.vrsj.org/ac2025/program/doc/IVRC-03.pdf" target="_blank" rel="noopener">
+      <div class="thumb fit"><img src="images/work-04-gvs.jpg" alt="自作した手指電気刺激装置とGVSデバイスの構成" loading="lazy" width="805" height="683"></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-cat">Installation · Hardware</span><span>IVRC2025</span></div>
+        <h3>GVS・電気刺激による体験型作品<span class="ext">↗</span></h3>
+        <p class="role">IVRC2025</p>
+        <p class="desc">アナログ回路から作った自作デバイスとUnityでのVRとの連携で、電気触覚固有の違和感を生かした作品を展示した。</p>
+        <div class="stack"><span>Analog Circuit</span><span>GVS</span><span>Electrical Stimulation</span><span>Unity</span></div>
+      </div>
+    </a>
+
+    <article class="card rv">
+      <div class="thumb"><img src="images/work-05-utvirtual.jpg" alt="UT-virtual制作のVR作品 KOMABA SPHERE" loading="lazy" width="900" height="527"></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-cat">Haptic VR Content</span><span>UT-virtual</span></div>
+        <h3>触覚VRコンテンツ制作</h3>
+        <p class="role">所属サークルでの活動</p>
+        <p class="desc">東大XRサークル UT-virtual で、VR開発のプロジェクトを継続的に手がけてきた。自作の触覚ベスト＆チェアを用いた作品は、全国メタバースコンペティション2025本選で優秀賞。</p>
+        <div class="stack"><span>Haptic Vest</span><span>Unity</span><span>VR Content</span></div>
+      </div>
+    </article>
+
+    <a class="card rv" href="https://khaoscamp.org/" target="_blank" rel="noopener">
+      <div class="thumb logo"><img src="images/work-06-khaos.jpg" alt="東京大学カオスキャンプ ロゴ" loading="lazy" width="400" height="400"></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-cat">Robotics</span><span>東京大学カオスキャンプ</span></div>
+        <h3>自然な動きを見せるロボット<span class="ext">↗</span></h3>
+        <p class="role">東京大学カオスキャンプ — ロボット制御担当</p>
+        <p class="desc">3DCGアニメーションとリアルタイム関節制御を合わせた、Unity/C++システムを構築し、CGクリエイターの操作から躍動感あるロボット動作を実現した。</p>
+        <div class="stack"><span>Unity</span><span>C++</span></div>
+      </div>
+    </a>
+
+    <a class="card rv" href="https://github.com/couna-arata/TouchMap" target="_blank" rel="noopener">
+      <div class="thumb"><img src="images/work-07-vrcenter.jpg" alt="接触圧をリアルタイムに可視化した手のヒートマップ" loading="lazy" width="900" height="439"></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="card-cat">XR · GPU · ML</span><span>2025年度</span></div>
+        <h3>東京大学VRセンター学生研究プロジェクト<span class="ext">↗</span></h3>
+        <p class="role">構築・実装（2025年度）</p>
+        <p class="desc">自作IMUデータグローブのセンサ信号に対するBi-LSTMのノイズ除去モデルを実装。加えて、ComputeShaderによるGPU並列計算で、接触圧判定をリアルタイムに行うシステムを構築。</p>
+        <div class="stack"><span>ComputeShader</span><span>Unity</span><span>GPGPU</span><span>Bi-LSTM</span><span>IMU</span></div>
+      </div>
+    </a>
+
+  </div>
+</div></section>
+
+<!-- ============ 経歴 ============ -->
+<section id="cv"><div class="wrap">
+  <div class="sec-head rv">
+    <div class="sec-label">03 — CV</div>
+    <h2>経歴<span class="en">Curriculum Vitae</span></h2>
+  </div>
+
+  <h3 class="cv-group">学歴・所属<span class="en">Education &amp; Affiliations</span></h3>
+  <div class="tl-legend rv">
+    <span class="ax"><i></i>東京大学</span>
+    <span><i></i>課外・所属</span>
+  </div>
+  <ul class="tl rv">
+    <li class="tl-item axis">
+      <span class="node"></span>
+      <div class="tl-date">2023</div>
+      <h3>東京大学 入学</h3>
+    </li>
+    <li class="tl-item branch now">
+      <span class="node"></span>
+      <div class="tl-date">2024 –</div>
+      <h3>UT-virtual <span class="sub">東京大学 XRサークル　入部</span></h3>
+    </li>
+    <li class="tl-item axis">
+      <span class="node"></span>
+      <div class="tl-date">2024年10月 – 2025年9月</div>
+      <h3>休学</h3>
+      <p>技術の習得に専念するため。</p>
+    </li>
+    <li class="tl-item branch">
+      <span class="node"></span>
+      <div class="tl-date">2024年11月 – 2026年5月</div>
+      <h3>commissure Inc. <span class="sub">/ 株式会社commissure — インターン</span></h3>
+      <p>デバイスのSDK・システム開発、展示向けXRコンテンツ制作、触覚提示に関する研究。</p>
+    </li>
+    <li class="tl-item axis now">
+      <span class="node"></span>
+      <div class="tl-date">2026 –</div>
+      <h3>東京大学 工学部 精密工学科</h3>
+    </li>
+    <li class="tl-item branch now">
+      <span class="node"></span>
+      <div class="tl-date">2026 –</div>
+      <h3>evarl lab <span class="sub">（河原塚研究室）東京大学 — RA</span></h3>
+      <p>ロボットの方策学習と汎用的なモデル。</p>
+      <p class="why">東京大学カオスキャンプのチームメンバーからの誘いにより参加。</p>
+    </li>
+  </ul>
+
+  <h3 class="cv-group">論文<span class="en">Publications</span></h3>
+  <div class="rv">
+    <div class="pub">
+      <h3><a href="https://dl.acm.org/doi/10.1007/978-3-032-32230-2_12" target="_blank" rel="noopener">AudioHapticDiffusion: Synchronized Audio-Haptic Generation via Shared Latent Space<span class="ext">↗</span></a></h3>
+      <p class="authors"><span class="me">Arata Kotani</span>, Arata Horie</p>
+      <p class="venue">EuroHaptics 2026 — LNCS vol. 16593, pp. 151–160. Springer, Cham.</p>    </div>
+    <div class="pub">
+      <h3><a href="https://dl.acm.org/doi/10.1007/978-3-032-32230-2_19" target="_blank" rel="noopener">DERS: Distribution of Eccentric Rotational Skin-Stretch Induce Directional Force Sensation on a Wrist<span class="ext">↗</span></a></h3>
+      <p class="authors"><span class="me">Arata Kotani</span>, Hideki Shimobayashi, Arata Horie</p>
+      <p class="venue">EuroHaptics 2026 — LNCS vol. 16593, pp. 249–258. Springer, Cham.</p>    </div>
+  </div>
+
+  <h3 class="cv-group">受賞・選出<span class="en">Awards &amp; Selections</span></h3>
+  <ul class="tl rv">
+    <li class="tl-item">
+      <span class="node"></span>
+      <div class="tl-date">2025</div>
+      <h3>全国メタバースコンペティション2025　本選 優秀賞</h3>
+      <p>自作の触覚ベスト・チェアを用いた作品。</p>
+    </li>
+    <li class="tl-item">
+      <span class="node"></span>
+      <div class="tl-date">2025</div>
+      <h3>IVRC2025　Seedステージ選出</h3>
+      <p>GVS・電気刺激デバイスを用いた体験型作品でリーダーを担当。</p>
+    </li>
+    <li class="tl-item">
+      <span class="node"></span>
+      <div class="tl-date">2025</div>
+      <h3>東京大学カオスキャンプ　1期生</h3>
+      <p>ロボット制御を担当。</p>
+    </li>
+  </ul>
+</div></section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact"><div class="wrap">
+  <div class="sec-head rv">
+    <div class="sec-label">04 — Contact</div>
+    <h2>Contact<span class="en">連絡先</span></h2>
+  </div>
+  <div class="contact-list rv">
+    <a class="contact-row" href="mailto:katanaarata@gmail.com">
+      <span class="k">Email</span>
+      <span class="v">katanaarata@gmail.com</span>
+    </a>
+    <a class="contact-row" href="mailto:katanaarata@g.ecc.u-tokyo.ac.jp">
+      <span class="k">Email（大学）</span>
+      <span class="v">katanaarata@g.ecc.u-tokyo.ac.jp</span>
+    </a>
+    <a class="contact-row" href="https://github.com/couna-arata" target="_blank" rel="noopener">
+      <span class="k">GitHub</span>
+      <span class="v">github.com/couna-arata<span class="ext">↗</span></span>
+    </a>
+  </div>
+</div></section>
+
+</main>
+
+<div class="wrap"><footer class="site">
+  <span>小谷新太 / Arata Kotani</span>
+  <span>© 2026</span>
+</footer></div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* sticky header shadow */
+  var head = document.querySelector("header.site");
+  function onScroll(){ head.classList.toggle("stuck", window.scrollY > 8); }
+  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+  /* active nav */
+  var links   = Array.prototype.slice.call(document.querySelectorAll('nav.main a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute("href").slice(1)); });
+  if("IntersectionObserver" in window){
+    var navIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var i = targets.indexOf(e.target);
+        links.forEach(function(a,j){
+          if(j===i) a.setAttribute("aria-current","true");
+          else a.removeAttribute("aria-current");
+        });
+      });
+    }, {rootMargin:"-64px 0px -65% 0px", threshold:0});
+    targets.forEach(function(t){ if(t) navIO.observe(t); });
+  }
+
+  /* scroll reveal */
+  var rvs = Array.prototype.slice.call(document.querySelectorAll(".rv"));
+  if(reduce || !("IntersectionObserver" in window)){
+    rvs.forEach(function(el){ el.classList.add("in"); });
+  }else{
+    var rvIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in"); rvIO.unobserve(e.target); }
+      });
+    }, {threshold:0.08, rootMargin:"0px 0px -40px 0px"});
+    rvs.forEach(function(el){ rvIO.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

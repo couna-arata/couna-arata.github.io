@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="moon" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>couna</title>
+<meta name="description" content="couna — VRChat portfolio">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- dissolve filter: fractal noise thresholded into an alpha mask -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <filter id="couna-dissolve" x="-4%" y="-4%" width="108%" height="108%"
+          color-interpolation-filters="sRGB" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.011 0.016"
+                  numOctaves="3" seed="17" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" result="mono"
+      values="0 0 0 0 0
+              0 0 0 0 0
+              0 0 0 0 0
+              1 0 0 0 0"/>
+    <feComponentTransfer in="mono" result="mask">
+      <feFuncA id="couna-dissolve-a" type="linear" slope="5" intercept="0.8"/>
+    </feComponentTransfer>
+    <feComposite in="SourceGraphic" in2="mask" operator="in"/>
+  </filter>
+</svg>
+
+<div id="sky"></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div>
+
+<nav class="topbar">
+  <a class="brand" href="index.html">couna<span class="dot">.</span></a>
+  <div class="nav-links">
+    <a href="about.html"   data-t="nav.about">About</a>
+    <a href="works.html"   data-t="nav.works">Works</a>
+    <a href="cast.html"    data-t="nav.cast">Cast</a>
+    <a href="gallery.html" data-t="nav.gallery">Gallery</a>
+  </div>
+  <div class="nav-tools" data-mount-toggles></div>
+</nav>
+
+<div class="mobilenav">
+  <a href="index.html"   class="current" data-t="nav.home">Home</a>
+  <a href="about.html"   data-t="nav.about">About</a>
+  <a href="works.html"   data-t="nav.works">Works</a>
+  <a href="cast.html"    data-t="nav.cast">Cast</a>
+  <a href="gallery.html" data-t="nav.gallery">Gallery</a>
+</div>
+
+<main class="stack">
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="layer"></div>
+      <div class="veil"></div>
+    </div>
+    <div class="eyebrow" data-t="hero.eyebrow">a quiet corner of the metaverse</div>
+    <h1 class="hero-title"><span class="glow">couna</span></h1>
+    <p class="hero-sub" data-t="hero.sub">VRChatで過ごしている、あたたかい夜のきろく。</p>
+    <div class="scroll-hint"><span data-t="hero.scroll">scroll</span><div class="line"></div></div>
+  </header>
+
+  <!-- ── STATUS ───────────────────────────────────── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-t="status.title">いまのこと</h2>
+        <span class="meta mono" data-t="status.meta">リアルタイム更新</span>
+      </div>
+
+      <div class="status-grid reveal">
+        <div class="chip">
+          <div class="k" data-t="status.temp">体感温度</div>
+          <div class="row">
+            <div class="therm"><div class="merc" id="chip-temp-merc" style="height:55%"></div></div>
+            <div><div class="v mono" id="chip-temp-value">--.-°C</div>
+                 <div class="sub" id="chip-temp-mood">—</div></div>
+          </div>
+        </div>
+
+        <div class="chip">
+          <div class="k" data-t="status.weather">天気</div>
+          <div class="row">
+            <div class="wglyph"><div class="sun"></div><div class="cloud"></div></div>
+            <div><div class="v" id="chip-weather-value">—</div>
+                 <div class="sub" id="chip-place">東京</div></div>
+          </div>
+        </div>
+
+        <div class="chip">
+          <div class="k" data-t="status.time">現地時刻</div>
+          <div class="v mono" id="chip-clock" style="font-size:1.35rem;">--:--:--</div>
+          <div class="sub mono">JST / UTC+9</div>
+        </div>
+
+        <div class="chip">
+          <div class="k" data-t="status.avatar">メインアバター</div>
+          <div class="row">
+            <img class="avatar-thumb" id="chip-avatar-thumb" src="assets/photos/vrc-05.jpg" alt="main avatar">
+            <div><div class="v" id="chip-avatar-name" style="font-size:.95rem;">—</div>
+                 <div class="sub" id="chip-avatar-note">—</div></div>
+          </div>
+        </div>
+
+        <div class="chip">
+          <div class="k" data-t="status.song">いまのお気に入り</div>
+          <div class="row">
+            <div class="eq"><i></i><i></i><i></i><i></i><i></i></div>
+            <div><div class="v" id="chip-song-title" style="font-size:.95rem;">—</div>
+                 <div class="sub" id="chip-song-artist">—</div></div>
+          </div>
+        </div>
+      </div>
+      <span class="ph-note" data-t="common.ph">※ プレースホルダー：実際の内容に差し替え可</span>
+    </div>
+  </section>
+
+  <!-- ── PORTALS ──────────────────────────────────── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-t="portal.title">めぐる</h2>
+        <span class="meta mono" data-t="portal.meta">4つのページ</span>
+      </div>
+      <div class="portal-grid reveal">
+        <a class="portal" href="about.html">
+          <img class="shot" src="assets/photos/vrc-09.jpg" alt="">
+          <span class="num mono">01</span><span class="arrow">↗</span>
+          <div class="name" data-t="portal.about">About</div>
+          <div class="desc" data-t="portal.about.desc">couna という人のこと</div>
+        </a>
+        <a class="portal" href="works.html">
+          <img class="shot" src="assets/photos/vrc-12.jpg" alt="">
+          <span class="num mono">02</span><span class="arrow">↗</span>
+          <div class="name" data-t="portal.works">Works</div>
+          <div class="desc" data-t="portal.works.desc">つくったもの・ワールド</div>
+        </a>
+        <a class="portal" href="cast.html">
+          <img class="shot" src="assets/photos/vrc-06.jpg" alt="">
+          <span class="num mono">03</span><span class="arrow">↗</span>
+          <div class="name" data-t="portal.cast">Cast</div>
+          <div class="desc" data-t="portal.cast.desc">いっしょにいる人たち</div>
+        </a>
+        <a class="portal" href="gallery.html">
+          <img class="shot" src="assets/photos/vrc-14.jpg" alt="">
+          <span class="num mono">04</span><span class="arrow">↗</span>
+          <div class="name" data-t="portal.gallery">Gallery</div>
+          <div class="desc" data-t="portal.gallery.desc">撮りためた写真</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LINKS ────────────────────────────────────── -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-t="links.title">つながる</h2>
+        <span class="meta mono" data-t="links.meta">related sites</span>
+      </div>
+      <div class="linkbox reveal">
+        <div class="link-grid" id="link-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer class="site">
+      <span class="mono">© 2026 couna</span>
+      <span class="mono" data-t="footer.note">made in the metaverse</span>
+    </footer>
+  </div>
+</main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

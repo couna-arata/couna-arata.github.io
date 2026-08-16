@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="moon" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cast — couna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="sky"></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div>
+
+<nav class="topbar">
+  <a class="brand" href="index.html">couna<span class="dot">.</span></a>
+  <div class="nav-links">
+    <a href="about.html"   data-t="nav.about">About</a>
+    <a href="works.html"   data-t="nav.works">Works</a>
+    <a href="cast.html" class="current" data-t="nav.cast">Cast</a>
+    <a href="gallery.html" data-t="nav.gallery">Gallery</a>
+  </div>
+  <div class="nav-tools" data-mount-toggles></div>
+</nav>
+
+<div class="mobilenav">
+  <a href="index.html"   data-t="nav.home">Home</a>
+  <a href="about.html"   data-t="nav.about">About</a>
+  <a href="works.html"   data-t="nav.works">Works</a>
+  <a href="cast.html"    class="current" data-t="nav.cast">Cast</a>
+  <a href="gallery.html" data-t="nav.gallery">Gallery</a>
+</div>
+
+<main class="stack">
+  <header class="pagehead wrap">
+    <div class="kicker mono" data-t="cast.kicker">cast</div>
+    <h1 data-th="cast.title">いっしょに<br>いる人たち。</h1>
+    <p data-t="cast.lead">よく会う人・お世話になっている人。名前は仮です。</p>
+  </header>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 data-t="nav.cast">Cast</h2>
+        <span class="meta mono" data-t="cast.meta">06 people — placeholder</span>
+      </div>
+
+      <div class="portal-grid reveal" style="grid-template-columns:repeat(2,1fr);">
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-06.jpg" alt="">
+          <div class="role mono" data-t="cast.role.friend">Friend</div>
+          <div class="name">Name 01</div>
+          <div class="note" data-t="cast.note">ひとことメモをここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-08.jpg" alt="">
+          <div class="role mono" data-t="cast.role.friend">Friend</div>
+          <div class="name">Name 02</div>
+          <div class="note" data-t="cast.note">ひとことメモをここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-13.jpg" alt="">
+          <div class="role mono" data-t="cast.role.crew">Crew</div>
+          <div class="name">Name 03</div>
+          <div class="note" data-t="cast.note">ひとことメモをここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-16.jpg" alt="">
+          <div class="role mono" data-t="cast.role.crew">Crew</div>
+          <div class="name">Name 04</div>
+          <div class="note" data-t="cast.note">ひとことメモをここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-10.jpg" alt="">
+          <div class="role mono" data-t="cast.role.thanks">Thanks</div>
+          <div class="name">Name 05</div>
+          <div class="note" data-t="cast.note">ひとことメモをここに。</div>
+        </div>
+        <div class="sq-card">
+          <img class="shot" src="assets/photos/vrc-01.jpg" alt="">
+          <div class="role mono" data-t="cast.role.thanks">Thanks</div>
+          <div class="name">Name 06</div>
+          <div class="note" data-t="cast.note">ひとことメモをここに。</div>
+        </div>
+      </div>
+      <span class="ph-note" data-t="common.ph">※ プレースホルダー</span>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer class="site">
+      <a href="index.html" class="mono" data-t="common.back">← Home</a>
+      <span class="mono" data-t="footer.note">made in the metaverse</span>
+    </footer>
+  </div>
+</main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
