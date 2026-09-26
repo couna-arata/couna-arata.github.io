@@ -24,6 +24,7 @@
 | ページ | URL |
 | --- | --- |
 | ポートフォリオ | `https://couna-arata.github.io/` |
+| 学習ログ | `https://couna-arata.github.io/study/` |
 | couna（VRChat） | `https://couna-arata.github.io/couna/` |
 
 2つのサイトの間にリンクは張っていないので、URL を知っている人だけが `couna` 側に来る。
@@ -34,6 +35,8 @@
 .
 ├── index.html          ポートフォリオ本体
 ├── images/             プロフィール・Works の画像・所属ロゴ
+├── study/
+│   └── index.html      学習ログ（ブログ風。ポートフォリオのナビ・ボタン・フッターからリンク）
 ├── couna/
 │   ├── index.html      ハブ（ヒーロー・ステータス・ポータル）
 │   ├── about.html
@@ -56,6 +59,16 @@
 - **画像の差し替え** … `images/` または `couna/assets/` の同名ファイルを置き換える
 
 パスはすべて相対指定なので、フォルダ構成を保てばどこに置いても動く。
+
+## 学習ログの書き方
+
+`study/index.html` の中にあるコメント「記事の追加のしかた」のテンプレートをコピーして、記事一覧のいちばん上に貼る。
+
+- `id` は `日付-短い英単語`（例 `2026-10-01-transformer`）。`study/#2026-10-01-transformer` がその記事への直リンクになる
+- `data-kind` は `paper` / `build` / `course` / `book` / `event` / `note`。絞り込みボタンと件数は自動で作られる
+- 並び順（新しい順）・年の見出し・右側の目次も自動
+- 小見出しは「やったこと / 学んだこと / 次にやること」を基本に、不要なら消してよい
+- 画像を載せるときは `study/images/` に置いて `<img src="images/ファイル名">`
 
 ## 独自ドメインを使う場合
 
