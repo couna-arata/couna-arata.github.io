@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学習ログ — 小谷新太 / Arata Kotani</title>
+<meta name="description" content="小谷新太の学習ログ。授業・論文・自主制作で学んだこと、やったこと、成果物を日付とともに記録。">
+<meta property="og:title" content="学習ログ — 小谷新太 / Arata Kotani">
+<meta property="og:description" content="授業・論文・自主制作で学んだこと、やったこと、成果物の記録。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--bg-2:#f7f7f5;--line:#e6e6e2;--line-2:#d2d2cc;
+  --ink:#141414;--ink-2:#5d5d5a;--ink-3:#8c8c88;
+  --sans:"Inter","Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --maxw:1140px;--readw:44em;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.8;font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;
+  padding:10px 18px;font-size:13.5px;text-decoration:none}
+.skip:focus{left:12px;top:12px}
+
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);
+  backdrop-filter:blur(12px) saturate(1.4);border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+header.site.stuck{border-bottom-color:var(--line);box-shadow:0 1px 20px -12px rgba(0,0,0,.25)}
+.site-in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
+.brand{font-weight:600;letter-spacing:.02em;text-decoration:none;font-size:15px;white-space:nowrap}
+.brand span{color:var(--ink-3);font-weight:400;margin-left:7px}
+@media(max-width:520px){.brand span{display:none}}
+nav.main{display:flex;gap:clamp(14px,2.6vw,30px);font-size:13.5px}
+nav.main a{text-decoration:none;color:var(--ink-2);position:relative;padding:4px 0;
+  transition:color .2s var(--ease);white-space:nowrap}
+nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:var(--ink);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease)}
+nav.main a:hover{color:var(--ink)}
+nav.main a:hover::after,nav.main a[aria-current="page"]::after{transform:scaleX(1)}
+nav.main a[aria-current="page"]{color:var(--ink)}
+
+/* ---------- page head ---------- */
+.page-head{padding:clamp(44px,6vw,80px) 0 clamp(28px,4vw,40px);border-bottom:1px solid var(--line)}
+.sec-label{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:"";flex:1;height:1px;background:var(--line);max-width:120px}
+h1{margin:0;font-size:clamp(28px,4.6vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
+h1 .en{font-weight:500;color:var(--ink-2);font-size:.5em;margin-left:.6em;letter-spacing:.005em}
+@media(max-width:520px){h1 .en{display:block;margin:6px 0 0}}
+.lead{margin:16px 0 0;max-width:var(--readw);color:var(--ink-2)}
+.back{display:inline-flex;align-items:center;gap:.45em;margin-top:18px;font-size:13px;
+  color:var(--ink-3);text-decoration:none;transition:color .2s var(--ease)}
+.back:hover{color:var(--ink)}
+.back .ar{transition:transform .25s var(--ease)}
+.back:hover .ar{transform:translateX(-3px)}
+
+/* ---------- filter ---------- */
+.filter{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chip{font:inherit;font-size:12.5px;color:var(--ink-2);background:var(--bg);cursor:pointer;
+  border:1px solid var(--line-2);border-radius:2px;padding:4px 12px;
+  display:inline-flex;align-items:center;gap:7px;
+  transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip .n{font-size:11px;opacity:.6;font-variant-numeric:tabular-nums}
+
+/* ---------- layout: posts + side index ---------- */
+.body-grid{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:clamp(32px,6vw,72px);
+  padding-top:clamp(20px,3vw,32px);padding-bottom:clamp(52px,7vw,88px)}
+@media(max-width:900px){.body-grid{grid-template-columns:1fr}.side{display:none}}
+
+.side{position:sticky;top:96px;align-self:start;font-size:12.5px;
+  max-height:calc(100vh - 120px);overflow:auto}
+.side h2{margin:18px 0 8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500}
+.side ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+.side li a{display:block;padding:4px 0 4px 12px;margin-left:-1px;border-left:1px solid transparent;
+  text-decoration:none;color:var(--ink-2);line-height:1.5;
+  transition:color .2s var(--ease),border-color .2s var(--ease)}
+.side li a:hover{color:var(--ink);border-left-color:var(--ink)}
+.side li a time{display:block;font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.side li[hidden]{display:none}
+
+/* ---------- posts ---------- */
+.year{margin:0;padding:34px 0 4px;font-size:13px;font-weight:600;letter-spacing:.08em;
+  color:var(--ink-3);font-variant-numeric:tabular-nums}
+.year:first-child{padding-top:6px}
+.year[hidden]{display:none}
+
+.post{padding:26px 0 30px;border-bottom:1px solid var(--line);max-width:var(--readw);
+  transition:background .4s var(--ease),box-shadow .4s var(--ease)}
+.post[hidden]{display:none}
+.post:target{background:var(--bg-2);box-shadow:0 0 0 14px var(--bg-2)}
+.post-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12px;
+  color:var(--ink-3);letter-spacing:.03em;font-variant-numeric:tabular-nums}
+.kind{font-size:11px;letter-spacing:.06em;color:var(--ink-2);border:1px solid var(--line-2);
+  border-radius:2px;padding:0 7px;line-height:1.7}
+.post h2{margin:7px 0 0;font-size:clamp(17px,2.3vw,19.5px);font-weight:700;
+  letter-spacing:-.012em;line-height:1.5}
+.post h2 a{text-decoration:none}
+.post h2 a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line-2)}
+.post h2 .hash{font-weight:400;color:var(--line-2);margin-left:.35em;opacity:0;
+  transition:opacity .2s var(--ease)}
+.post h2 a:hover .hash,.post h2 a:focus-visible .hash{opacity:1}
+
+.post-body{margin-top:10px;color:var(--ink-2);font-size:14.5px}
+.post-body p{margin:0 0 12px}
+.post-body > :last-child{margin-bottom:0}
+.post-body h3{margin:18px 0 6px;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:.02em}
+.post-body ul,.post-body ol{margin:0 0 12px;padding-left:1.3em}
+.post-body li{margin:2px 0}
+.post-body a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-2)}
+.post-body a:hover{text-decoration-color:var(--ink)}
+.post-body code{font-family:var(--mono);font-size:.88em;background:var(--bg-2);
+  border-radius:2px;padding:1px 5px}
+.post-body pre{margin:0 0 12px;padding:12px 14px;background:var(--bg-2);border:1px solid var(--line);
+  border-radius:2px;overflow:auto;font-size:12.5px;line-height:1.6}
+.post-body pre code{background:none;padding:0}
+.post-body blockquote{margin:0 0 12px;padding-left:12px;border-left:2px solid var(--line-2);color:var(--ink-3)}
+.post-body figure{margin:14px 0}
+.post-body figure img{border:1px solid var(--line);border-radius:2px}
+.post-body figcaption{margin-top:6px;font-size:12px;color:var(--ink-3)}
+.post-body details{margin:0 0 12px}
+.post-body summary{cursor:pointer;font-size:13px;color:var(--ink-3)}
+.post-body summary:hover{color:var(--ink)}
+
+/* 成果物・参考リンク */
+.post-links{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.post-links a{display:inline-flex;align-items:baseline;gap:.4em;font-size:12.5px;text-decoration:none;
+  border:1px solid var(--line-2);border-radius:2px;padding:3px 11px;
+  transition:border-color .2s var(--ease),background .2s var(--ease)}
+.post-links a:hover{border-color:var(--ink)}
+.post-links .ext{font-size:11px;color:var(--ink-3)}
+.stack{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.stack span{font-size:11px;color:var(--ink-3);background:var(--bg-2);border-radius:2px;padding:2px 7px}
+
+.empty{padding:40px 0;color:var(--ink-3);font-size:13.5px}
+
+footer.site{padding:28px 0 44px;font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer.site a{text-decoration:none}
+footer.site a:hover{color:var(--ink)}
+
+@media print{
+  header.site,.filter,.side,.skip,.back{display:none!important}
+  body{font-size:11pt;line-height:1.6}
+  .body-grid{display:block}
+  .post{break-inside:avoid;max-width:none}
+  .post[hidden],.year[hidden]{display:block!important}
+  a{text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="site"><div class="wrap site-in">
+  <a class="brand" href="../">小谷新太<span>/ Arata Kotani</span></a>
+  <nav class="main" aria-label="メイン">
+    <a href="../#about">About</a>
+    <a href="../#works">Works</a>
+    <a href="../#cv">経歴</a>
+    <a href="./" aria-current="page">学習ログ</a>
+  </nav>
+</div></header>
+
+<main id="main">
+
+<div class="page-head"><div class="wrap">
+  <div class="sec-label">Study Log</div>
+  <h1>学習ログ<span class="en">What I've been learning</span></h1>
+  <p class="lead">授業・論文・自主制作を通して学んだこと、やったこと、その成果物を日付とともに残していく記録です。</p>
+  <a class="back" href="../"><span class="ar">←</span>ポートフォリオに戻る</a>
+
+  <!-- 種類で絞り込み。ボタンと件数は下の記事の data-kind から自動で作られる -->
+  <div class="filter" role="group" aria-label="種類で絞り込み"></div>
+</div></div>
+
+<div class="wrap body-grid">
+
+<div id="posts">
+<!--
+  ================= 記事の追加のしかた =================
+  1. 下のテンプレートをコピーして、いちばん上（最新）に貼る
+  2. id は「日付-短い英単語」にする（記事への直リンク URL になる：study/#2026-10-01-transformer）
+  3. data-kind は次のどれか（増やしてもよい。フィルタのボタンは自動で増える）
+       paper … 論文を読んだ   build … 作った・実装した   course … 授業
+       book  … 本・教材       event … 学会・イベント      note  … その他メモ
+  4. 使わない項目（h3 の小見出し、post-links、stack）は丸ごと消してよい
+  年の見出し（2026 など）は自動で入るので書かなくてよい。
+
+  <article class="post" id="2026-10-01-example" data-kind="build">
+    <div class="post-meta">
+      <time datetime="2026-10-01">2026.10.01</time>
+    </div>
+    <h2>タイトル</h2>
+    <div class="post-body">
+      <p>一言でいうと何をしたか。</p>
+
+      <h3>やったこと</h3>
+      <ul>
+        <li>…</li>
+      </ul>
+
+      <h3>学んだこと</h3>
+      <p>…</p>
+
+      <h3>次にやること</h3>
+      <p>…</p>
+
+      <figure>
+        <img src="images/2026-10-01-example.jpg" alt="説明" loading="lazy">
+        <figcaption>キャプション</figcaption>
+      </figure>
+    </div>
+    <ul class="post-links">
+      <li><a href="https://github.com/couna-arata/..." target="_blank" rel="noopener">GitHub<span class="ext">↗</span></a></li>
+      <li><a href="https://arxiv.org/abs/..." target="_blank" rel="noopener">論文<span class="ext">↗</span></a></li>
+    </ul>
+    <div class="stack"><span>PyTorch</span><span>Python</span></div>
+  </article>
+  =====================================================
+-->
+
+  <article class="post" id="2026-09-26-start" data-kind="note">
+    <div class="post-meta">
+      <time datetime="2026-09-26">2026.09.26</time>
+    </div>
+    <h2>学習ログをはじめる</h2>
+    <div class="post-body">
+      <p>授業や論文、自主的な制作を通して学んだことを、ここに日付とともに書き残していきます。</p>
+      <p>完成した成果物だけでなく、途中で試したこと・つまずいたこと・次に調べたいことも含めて記録するつもりです。</p>
+    </div>
+  </article>
+
+</div>
+
+<aside class="side" aria-label="記事一覧">
+  <h2>Index</h2>
+  <ol id="toc"></ol>
+</aside>
+
+</div>
+</main>
+
+<div class="wrap"><footer class="site">
+  <a href="../">小谷新太 / Arata Kotani</a>
+  <span>© 2026</span>
+</footer></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var KIND_LABEL = {
+    paper:"論文", build:"制作・実装", course:"授業",
+    book:"本・教材", event:"学会・イベント", note:"メモ"
+  };
+  function label(k){ return KIND_LABEL[k] || k; }
+
+  var list  = document.getElementById("posts");
+  var toc   = document.getElementById("toc");
+  var bar   = document.querySelector(".filter");
+  var posts = Array.prototype.slice.call(list.querySelectorAll("article.post"));
+
+  /* 新しい順に並べ替え（貼る場所を間違えても日付順になる） */
+  function dateOf(p){ var t = p.querySelector("time"); return t ? t.getAttribute("datetime") : ""; }
+  posts.sort(function(a,b){ return dateOf(b).localeCompare(dateOf(a)); });
+
+  /* 年見出し + 種類ラベル + 目次 */
+  var lastYear = null, years = [];
+  posts.forEach(function(p){
+    var d = dateOf(p), y = d.slice(0,4);
+    if(y !== lastYear){
+      var h = document.createElement("h2");
+      h.className = "year"; h.textContent = y;
+      list.appendChild(h); years.push(h); lastYear = y;
+    }
+    list.appendChild(p);
+
+    var kind = p.getAttribute("data-kind");
+    var meta = p.querySelector(".post-meta");
+    if(kind && meta){
+      var k = document.createElement("span");
+      k.className = "kind"; k.textContent = label(kind);
+      meta.appendChild(k);
+    }
+
+    /* タイトルを記事への直リンクに */
+    var h2 = p.querySelector("h2");
+    if(h2 && p.id && !h2.querySelector("a")){
+      var a = document.createElement("a");
+      a.href = "#" + p.id;
+      while(h2.firstChild) a.appendChild(h2.firstChild);
+      var hash = document.createElement("span");
+      hash.className = "hash"; hash.setAttribute("aria-hidden","true"); hash.textContent = "#";
+      a.appendChild(hash);
+      h2.appendChild(a);
+    }
+
+    var li = document.createElement("li");
+    var ta = document.createElement("a");
+    ta.href = "#" + p.id;
+    var tt = document.createElement("time");
+    tt.textContent = d.replace(/-/g,".");
+    ta.appendChild(tt);
+    ta.appendChild(document.createTextNode(h2 ? h2.textContent.replace(/#$/,"") : ""));
+    li.appendChild(ta);
+    li.setAttribute("data-kind", kind || "");
+    toc.appendChild(li);
+  });
+
+  if(!posts.length){
+    var e = document.createElement("p");
+    e.className = "empty"; e.textContent = "まだ記事はありません。";
+    list.appendChild(e);
+  }
+
+  /* 種類フィルタ */
+  var counts = {};
+  posts.forEach(function(p){ var k = p.getAttribute("data-kind"); if(k) counts[k] = (counts[k]||0) + 1; });
+  var kinds = Object.keys(counts);
+  var chips = [];
+
+  function apply(kind){
+    posts.forEach(function(p){ p.hidden = !!kind && p.getAttribute("data-kind") !== kind; });
+    Array.prototype.forEach.call(toc.children, function(li){
+      li.hidden = !!kind && li.getAttribute("data-kind") !== kind;
+    });
+    /* 中身が全部隠れた年見出しは隠す */
+    years.forEach(function(h){
+      var n = h.nextElementSibling, any = false;
+      while(n && !n.classList.contains("year")){ if(!n.hidden) any = true; n = n.nextElementSibling; }
+      h.hidden = !any;
+    });
+    chips.forEach(function(c){ c.setAttribute("aria-pressed", String(c.dataset.kind === (kind||""))); });
+  }
+
+  function chip(kind, text, n){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.dataset.kind = kind;
+    b.appendChild(document.createTextNode(text));
+    var s = document.createElement("span"); s.className = "n"; s.textContent = n;
+    b.appendChild(s);
+    b.addEventListener("click", function(){ apply(kind); });
+    bar.appendChild(b); chips.push(b);
+  }
+
+  if(kinds.length > 1){
+    chip("", "すべて", posts.length);
+    kinds.forEach(function(k){ chip(k, label(k), counts[k]); });
+    apply("");
+  }else{
+    bar.remove();
+  }
+
+  /* 直リンクで開いたとき、絞り込みで隠れていたら解除 */
+  window.addEventListener("hashchange", function(){
+    var t = document.getElementById(location.hash.slice(1));
+    if(t && t.hidden) apply("");
+  });
+
+  /* sticky header shadow */
+  var head = document.querySelector("header.site");
+  function onScroll(){ head.classList.toggle("stuck", window.scrollY > 8); }
+  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>

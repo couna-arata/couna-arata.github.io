@@ -52,6 +52,8 @@ nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1p
 nav.main a:hover{color:var(--ink)}
 nav.main a:hover::after,nav.main a[aria-current="true"]::after{transform:scaleX(1)}
 nav.main a[aria-current="true"]{color:var(--ink)}
+/* 狭い画面ではナビに入りきらないので、ヒーローのボタンだけに任せる */
+@media(max-width:480px){nav.main .nav-study{display:none}}
 
 /* ---------- hero ---------- */
 .hero{padding:clamp(48px,7vw,92px) 0 clamp(40px,6vw,64px);border-bottom:1px solid var(--line)}
@@ -278,6 +280,7 @@ footer.site{padding:28px 0 44px;font-size:12.5px;color:var(--ink-3);
     <a href="#works">Works</a>
     <a href="#cv">経歴</a>
     <a href="#contact">Contact</a>
+    <a class="nav-study" href="study/">学習ログ</a>
   </nav>
 </div></header>
 
@@ -331,6 +334,7 @@ footer.site{padding:28px 0 44px;font-size:12.5px;color:var(--ink-3);
       <a class="btn solid" href="#about">About <span class="ar">→</span></a>
       <a class="btn" href="#works">Works</a>
       <a class="btn" href="#cv">経歴</a>
+      <a class="btn" href="study/">学習ログ</a>
     </div>
   </div>
 </div></div>
@@ -547,7 +551,7 @@ footer.site{padding:28px 0 44px;font-size:12.5px;color:var(--ink-3);
 
 <div class="wrap"><footer class="site">
   <span>小谷新太 / Arata Kotani</span>
-  <span>© 2026</span>
+  <span><a href="study/" style="text-decoration:none">学習ログ</a>　© 2026</span>
 </footer></div>
 
 <script>
